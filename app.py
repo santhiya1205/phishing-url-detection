@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
@@ -15,13 +16,12 @@ def simple_rule_based_model(url: str):
         score += 1
     if url_lower.startswith("http://"):
         score += 1
-
     if score >= 2:
         pred = "Phishing"
-        reason = "URL contains multiple suspicious patterns such as keywords, length or characters."
+        reason = "URL contains multiple suspicious patterns."
     else:
         pred = "Legitimate"
-        reason = "No strong phishing indicators detected in basic lexical checks."
+        reason = "No phishing indicators detected."
     return pred, reason
 
 @app.route("/", methods=["GET", "POST"])
@@ -34,4 +34,5 @@ def index():
     return render_template("index.html", prediction=prediction, reason=reason)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port, debug=False)
