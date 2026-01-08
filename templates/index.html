@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Phishing URL Detection Using ML</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #0f172a;
+            color: #e5e7eb;
+        }
+        header {
+            background: #020617;
+            padding: 20px 40px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.6);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 26px;
+            letter-spacing: 1px;
+        }
+        header p {
+            margin: 5px 0 0;
+            font-size: 13px;
+            color: #9ca3af;
+        }
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 20px 40px;
+        }
+        .card {
+            background: #020617;
+            border-radius: 10px;
+            padding: 20px 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 25px rgba(15,23,42,0.7);
+            border: 1px solid #1f2937;
+        }
+        .card h2 {
+            margin-top: 0;
+            font-size: 20px;
+            color: #e5e7eb;
+        }
+        .tag {
+            display: inline-block;
+            background: #1d4ed8;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 999px;
+            font-size: 11px;
+            margin-right: 8px;
+        }
+        .problem-points li {
+            margin-bottom: 5px;
+        }
+        form {
+            margin-top: 10px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 6px;
+            border: 1px solid #4b5563;
+            background: #020617;
+            color: #e5e7eb;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            margin-top: 10px;
+            padding: 10px 18px;
+            border-radius: 6px;
+            border: none;
+            background: #22c55e;
+            color: #020617;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        input[type="submit"]:hover {
+            background: #16a34a;
+        }
+        .result-box {
+            margin-top: 15px;
+            padding: 12px 14px;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        .safe {
+            background: rgba(22,163,74,0.1);
+            border: 1px solid #22c55e;
+            color: #bbf7d0;
+        }
+        .phishing {
+            background: rgba(220,38,38,0.1);
+            border: 1px solid #ef4444;
+            color: #fecaca;
+        }
+        .reason {
+            margin-top: 8px;
+            font-size: 13px;
+            color: #9ca3af;
+        }
+        footer {
+            text-align: center;
+            font-size: 11px;
+            color: #6b7280;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Phishing URL Detection Using ML</h1>
+    <p>Network &amp; Security / Cybersecurity + Machine Learning</p>
+</header>
+
+<div class="container">
+
+    <div class="card">
+        <span class="tag">Project Overview</span>
+        <h2>About the System</h2>
+        <p>
+            This web application accepts a website link (URL) as input and predicts whether it is
+            likely to be a legitimate site or a phishing attempt by analysing its structure and content.
+        </p>
+    </div>
+
+    <div class="card">
+        <span class="tag">Why Phishing Matters</span>
+        <h2>Why Phishing is a Problem</h2>
+        <ul class="problem-points">
+            <li>Users receive fake links through email, SMS, WhatsApp and social media.</li>
+            <li>Malicious URLs closely resemble real banking, shopping or login websites.</li>
+            <li>Victims may share passwords, OTPs or card details, causing financial loss.</li>
+            <li>Manual verification of every link is time-consuming and error-prone.</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <span class="tag">Live Demo</span>
+        <h2>Check if a URL is Safe</h2>
+        <form method="POST">
+            <label for="url">Enter URL:</label><br>
+            <input type="text" id="url" name="url" placeholder="https://example.com/login" required>
+            <input type="submit" value="Analyze URL">
+        </form>
+
+        {% if prediction %}
+        <div class="result-box {{ 'safe' if prediction == 'Legitimate' else 'phishing' }}">
+            <strong>Prediction:</strong> {{ prediction }}
+            <div class="reason">
+                {{ reason }}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="card">
+        <span class="tag">Technology Stack</span>
+        <h2>Technologies Used</h2>
+        <ul>
+            <li>Python (Flask for web backend).</li>
+            <li>Machine Learning model for URL classification.</li>
+            <li>HTML, CSS for a clean and simple user interface.</li>
+        </ul>
+    </div>
+
+    <footer>
+        Final Year Project &mdash; Phishing URL Detection Using Machine Learning
+    </footer>
+
+</div>
+</body>
+</html>
